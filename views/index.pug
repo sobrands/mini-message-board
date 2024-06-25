@@ -1,5 +1,15 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  header
+    h1=title
+    a(href="/new") New Message
+    p Welcome to #{title}, here are the latest messages
+  
+  #messageboard
+    each message, index in messages
+      .message
+        .userInfo
+          p.user #{message.user}
+          p.date (#{message.added})
+        p.text #{message.text}

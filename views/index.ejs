@@ -6,13 +6,16 @@
   </header>
 
   <div id="messageboard">
-    <% messages.forEach((message) => { %>
-      <div class="message">
-        <div class="userInfo">
-          <p class="user"><%= message.user %></p>
-          <p class="data"><%= message.added %></p>
+    <% messages.forEach((message, index) => { %>
+      <div class="message-body">
+        <div class="message">
+          <div class="userInfo">
+            <p class="user"><%= message.user %></p>
+            <p class="data"><%= message.added %></p>
+          </div>
+          <p class="text"><%= message.text %></p>
         </div>
-        <p class="text"><%= message.text %></p>
+        <a href="<%= `message/${index}` %>">Open</a>
       </div>
     <% }) %>
   </div>

@@ -1,0 +1,18 @@
+<%- include('header') %>
+  <header>
+    <h1><%= title %></h1>
+  </header>
+
+  <div id="messageboard">
+    <div class="message-body">
+      <div class="message">
+        <div class="userInfo">
+          <p class="user"><%= message.user %></p>
+          <p class="data"><%= message.added %></p>
+        </div>
+        <p class="text"><%= message.text %></p>
+      </div>
+    </div>
+    <a href="/">Back</a>
+  </div>
+<%- include('footer') %>

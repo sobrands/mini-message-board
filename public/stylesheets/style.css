@@ -44,15 +44,25 @@ header {
   padding: 2rem 0;
 }
 
-.message {
+.message-body {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
   max-width: 1500px;
+  background-color: #f7f7f7;
+  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.08);
+}
+
+.message-body a {
+  align-self: center;
+  text-align: center;
+}
+
+.message {
   width: 80%;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-
-  background-color: #f7f7f7;
-  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.08);
 }
 
 .userInfo {

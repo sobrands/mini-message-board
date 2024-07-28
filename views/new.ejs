@@ -1,0 +1,22 @@
+<%- include('header') %>
+  <header>
+    <h1>Send A Message</h1>
+  </header>
+  <div id="newMessage">
+    <form action="/new" method="POST">
+      <div class="input-field">
+        <label for="user">Your Name:</label>
+        <input type="text" id="user" name="user" required>
+      </div>
+      <div class="input-field">
+        <label for="message">Your Message:</label>
+        <textarea name="message" id="message" rows="5"
+        placeholder="Your Message"></textarea>
+      </div>
+      <div id="buttons">
+        <button type="submit">Submit</button>
+        <a href="/">Go Back</a>
+      </div>
+    </form>
+  </div>
+<%- include('footer') %>

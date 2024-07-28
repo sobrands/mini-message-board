@@ -1,0 +1,19 @@
+<%- include('header') %>
+  <header>
+    <h1><%= title %></h1>
+    <a href="/new">New Message</a>
+    <p>Welcome to <%= title %>, here are the latest messages</p>
+  </header>
+
+  <div id="messageboard">
+    <% messages.forEach((message) => { %>
+      <div class="message">
+        <div class="userInfo">
+          <p class="user"><%= message.user %></p>
+          <p class="data"><%= message.added %></p>
+        </div>
+        <p class="text"><%= message.text %></p>
+      </div>
+    <% }) %>
+  </div>
+<%- include('footer') %>

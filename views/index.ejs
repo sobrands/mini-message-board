@@ -6,17 +6,19 @@
   </header>
 
   <div id="messageboard">
-    <% messages.forEach((message, index) => { %>
-      <div class="message-body">
-        <div class="message">
-          <div class="userInfo">
-            <p class="user"><%= message.user %></p>
-            <p class="data"><%= message.added %></p>
+    <% if (locals.messages) { %>
+      <% messages.forEach((message, index) => { %>
+        <div class="message-body">
+          <div class="message">
+            <div class="userInfo">
+              <p class="user"><%= message.username %></p>
+              <p class="data"><%= message.created_at %></p>
+            </div>
+            <p class="text"><%= message.message %></p>
           </div>
-          <p class="text"><%= message.text %></p>
+          <a href="<%= `message/${index}` %>">Open</a>
         </div>
-        <a href="<%= `message/${index}` %>">Open</a>
-      </div>
-    <% }) %>
+      <% }) %>
+    <% } %>
   </div>
 <%- include('footer') %>

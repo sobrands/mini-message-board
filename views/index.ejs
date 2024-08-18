@@ -3,6 +3,9 @@
     <h1><%= title %></h1>
     <a href="/new">New Message</a>
     <p>Welcome to <%= title %>, here are the latest messages</p>
+    <form action="/log-out" method="POST">
+      <button type="submit" style="align-self: center;">Log Out</button>
+    </form>
   </header>
 
   <div id="messageboard">

@@ -1,4 +1,5 @@
 const pool = require("./pool");
+const bcrypt = require("bcryptjs");
 
 async function getMessages() {
   const { rows } = await pool.query("SELECT * FROM messages");
@@ -11,12 +12,55 @@ async function getMessage(id) {
 }
 
 async function insertMessage(username, message) {
-  console.log(message);
   await pool.query("INSERT INTO messages (username, message) VALUES ($1, $2)", [username, message]);
+}
+
+async function getUser(username) {
+  const { rows } = await pool.query("SELECT * FROM users WHERE username = $1", [username]);
+  return rows[0];
+}
+
+async function getUserById(id) {
+  const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
+  return rows[0];
+}
+
+async function createUser(data) {
+  const saltRounds = 10;
+  bcrypt.genSalt(saltRounds, (err, salt) => {
+    if (err) {
+      console.error(err);
+      throw Error("FAILED TO GENERATE BCRYPT SALT")
+    }
+    bcrypt.hash(data.password, salt, async (err, hash) => {
+      if (err) {
+        console.error(err);
+        throw Error("FAILED TO HASH PASSWORD");
+      }
+      await pool.query(`
+        INSERT INTO users (
+          firstname,
+          lastname,
+          username,
+          password,
+          ismember
+        ) VALUES (
+          $1,
+          $2,
+          $3,
+          $4,
+          false
+        )
+      `, [data.firstName, data.lastName, data.username, hash]);
+    })
+  })
 }
 
 module.exports = {
   getMessages,
   getMessage,
-  insertMessage
+  insertMessage,
+  getUser,
+  getUserById,
+  createUser
 }

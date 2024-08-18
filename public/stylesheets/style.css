@@ -36,7 +36,9 @@ header {
 }
 
 #messageboard,
-#newMessage {
+#newMessage,
+#login-form,
+#signup-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -110,4 +112,17 @@ form {
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+a#sign-up {
+  background-color: white;
+  color: black;
+  font-size: 0.9rem;
+  padding: 0;
+  padding-left: 0.4rem;
+}
+
+a#sign-up:hover {
+  text-decoration: underline;
+  opacity: 1.0;
 }

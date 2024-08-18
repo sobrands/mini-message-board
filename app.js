@@ -1,21 +1,33 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const session = require('express-session');
+const pgSession = require('connect-pg-simple')(session);
+const pgPool = require("./db/pool");
+const passport = require("./utils/passport");
 
-var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(logger('dev'));
+app.use(session({
+  store: new pgSession({
+    pool: pgPool,
+    tableName: "user_sessions",
+    createTableIfMissing: true,
+  }),
+  secret: "cats",
+  resave: false,
+  saveUninitialized: true
+}));
+
+app.use(passport.session());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
@@ -36,4 +48,4 @@ app.use(function(err, req, res, next) {
   res.render('error', { title: "Error" });
 });
 
-module.exports = app;
+app.listen(3000, () => console.log("app listening on port 3000"));

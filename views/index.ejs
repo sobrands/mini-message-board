@@ -3,9 +3,6 @@
     <h1><%= title %></h1>
     <a href="/new">New Message</a>
     <p>Welcome to <%= title %>, here are the latest messages</p>
-    <form action="/log-out" method="POST">
-      <button type="submit" style="align-self: center;">Log Out</button>
-    </form>
   </header>
 
   <div id="messageboard">
@@ -13,10 +10,12 @@
       <% messages.forEach((message, index) => { %>
         <div class="message-body">
           <div class="message">
-            <div class="userInfo">
-              <p class="user"><%= message.username %></p>
-              <p class="data"><%= message.created_at %></p>
-            </div>
+            <% if (locals.currentUser.ismember) { %>
+              <div class="userInfo">
+                <p class="user"><%= message.username %></p>
+                <p class="data"><%= message.created_at %></p>
+              </div>
+            <% } %>
             <p class="text"><%= message.message %></p>
           </div>
           <a href="<%= `message/${index}` %>">Open</a>
@@ -24,4 +23,14 @@
       <% }) %>
     <% } %>
   </div>
+
+  <div class="controls">
+    <% if (!locals.currentUser.ismember) { %>
+      <a href="/join-club">Join The Club</a>
+    <% } %>
+    <form action="/log-out" method="POST">
+      <button type="submit" style="align-self: center;">Log Out</button>
+    </form>
+  </div>
+
 <%- include('footer') %>

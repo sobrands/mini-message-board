@@ -1,0 +1,27 @@
+<%- include('header') %>
+  <header>
+    <h1><%= title %></h1>
+    <p>Fill in the correct code to become an exclusive member</p>
+  </header>
+
+  <div id="club-form">
+    <form action="/join-club" method="POST">
+      <div class="input-field">
+        <label for="code">Secret Code:</label>
+        <input type="text" id="code" name="code">
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <div>
+    <% if (errors) { %>
+      <ul>
+        <% errors.map((error) => { %>
+          <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+    <% } %>
+  </div>
+
+<%- include('footer') %>

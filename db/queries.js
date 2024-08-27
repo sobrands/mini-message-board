@@ -56,11 +56,20 @@ async function createUser(data) {
   })
 }
 
+async function updateUserMembership(id) {
+  await pool.query(`
+  UPDATE users 
+  SET ismember = TRUE
+    WHERE id = $1
+  `, [id]);
+}
+
 module.exports = {
-  getMessages,
   getMessage,
+  getMessages,
   insertMessage,
   getUser,
   getUserById,
-  createUser
+  createUser,
+  updateUserMembership,
 }

@@ -38,7 +38,8 @@ header {
 #messageboard,
 #newMessage,
 #login-form,
-#signup-form {
+#signup-form,
+#club-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,7 +50,9 @@ header {
 .message-body {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 2rem;
+  width: 80%;
   max-width: 1500px;
   background-color: #f7f7f7;
   box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.08);
@@ -125,4 +128,14 @@ a#sign-up {
 a#sign-up:hover {
   text-decoration: underline;
   opacity: 1.0;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.controls form {
+  width: 15%;
 }

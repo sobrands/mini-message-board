@@ -42,11 +42,11 @@ router.get("/sign-up", (req, res) => {
 });
 
 router.post("/sign-up", [
-  body("first-name", "First name must be at least 1 character")
+  body("firstName", "First name must be at least 1 character")
     .trim()
     .isLength({ min: 1 })
     .escape(),
-  body("last-name", "Last name must be at least 1 character")
+  body("lastName", "Last name must be at least 1 character")
     .trim()
     .isLength({ min: 1 })
     .escape(),

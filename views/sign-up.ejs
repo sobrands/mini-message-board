@@ -33,7 +33,7 @@
     <% if (errors) { %>
       <ul>
         <% errors.map((error) => { %>
-          <li><%= error %></li>
+          <li><%= error.msg %></li>
         <% }) %>
       </ul>
     <% } %>

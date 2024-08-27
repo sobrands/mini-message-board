@@ -24,6 +24,7 @@ router.get('/new', authMiddleware, function(req, res) {
 
 router.post('/new', authMiddleware, async function(req, res) {
   const { user, message } = req.body;
+  console.log(user);
   await db.insertMessage(user, message);
   res.redirect('/');
 });

@@ -6,7 +6,7 @@
     <form action="/new" method="POST">
       <div class="input-field">
         <label for="user">Your Name:</label>
-        <input type="text" id="user" name="user" required>
+        <input type="text" id="user" name="user" value="<%= locals.currentUser.firstname %>" readonly required>
       </div>
       <div class="input-field">
         <label for="message">Your Message:</label>

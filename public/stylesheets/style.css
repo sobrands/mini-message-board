@@ -101,7 +101,8 @@ form {
   width: 100%;
 }
 
-.input-field label {
+.input-field label,
+.check-field label {
   font-size: 1.2rem;
 }
 
@@ -109,6 +110,17 @@ form {
 .input-field textarea {
   padding: 4px;
   font-size: 0.9rem;
+}
+
+.check-field {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.check-field input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
 }
 
 #buttons {
@@ -138,4 +150,9 @@ a#sign-up:hover {
 
 .controls form {
   width: 15%;
+}
+
+.control-buttons {
+  display: flex;
+  gap: 0.6rem;
 }

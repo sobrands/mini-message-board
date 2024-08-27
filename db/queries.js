@@ -7,7 +7,7 @@ async function getMessages() {
 }
 
 async function getMessage(id) {
-  const { rows } = await pool.query("SELECT * FROM messages WHERE id = ($1)", [parseInt(id) + 1]);
+  const { rows } = await pool.query("SELECT * FROM messages WHERE id = ($1)", [id]);
   return rows[0];
 }
 
@@ -43,15 +43,17 @@ async function createUser(data) {
           lastname,
           username,
           password,
-          ismember
+          ismember,
+          isadmin
         ) VALUES (
           $1,
           $2,
           $3,
           $4,
-          false
+          $5,
+          $5
         )
-      `, [data.firstName, data.lastName, data.username, hash]);
+      `, [data.firstName, data.lastName, data.username, hash, data.admin === "on"]);
     })
   })
 }

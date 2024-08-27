@@ -7,7 +7,7 @@
 
   <div id="messageboard">
     <% if (locals.messages) { %>
-      <% messages.forEach((message, index) => { %>
+      <% messages.forEach((message) => { %>
         <div class="message-body">
           <div class="message">
             <% if (locals.currentUser.ismember) { %>
@@ -18,7 +18,14 @@
             <% } %>
             <p class="text"><%= message.message %></p>
           </div>
-          <a href="<%= `message/${index}` %>">Open</a>
+          <div class="control-buttons">
+            <a href="<%= `message/${message.id}` %>">Open</a>
+            <% if (locals.currentUser.isadmin) { %>
+              <form action="/delete-message" method="POST">
+                <button type="submit">Delete</button>
+              </form>
+            <% } %>
+          </div>
         </div>
       <% }) %>
     <% } %>

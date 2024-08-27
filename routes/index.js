@@ -132,6 +132,11 @@ router.post("/join-club", authMiddleware, [
       }
     }
   }
-])
+]);
+
+router.post("/delete-message", authMiddleware, async (req, res, next) => {
+  await db.deleteMessage(req.body.messageid);
+  res.redirect("/");
+});
 
 module.exports = router;
